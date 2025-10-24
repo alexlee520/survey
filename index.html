@@ -1,176 +1,70 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Uber 商家意願調查</title>
-  <style>
-    :root{
-      --bg:#111;
-      --card:#ffffff;
-      --accent:#06c167; /* Uber-like green */
-      --muted:#666;
-      --maxw:760px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "Helvetica Neue", Arial;
-    }
-    body{ background: linear-gradient(180deg,#0b0b0b 0%, #111 100%); color:#111; margin:0; padding:32px; display:flex; justify-content:center; }
-    .container{ width:100%; max-width:var(--maxw); background:var(--card); border-radius:10px; padding:28px; box-shadow:0 10px 30px rgba(2,6,23,0.35); }
-    h1{ margin:0 0 8px; font-size:22px; color:#111; }
-    p.lead{ margin:0 0 20px; color:var(--muted); }
-    label{ display:block; font-size:14px; margin-bottom:6px; color:#222; }
-    .field{ margin-bottom:16px; }
-    input[type="text"], input[type="email"], input[type="tel"], input[type="date"], textarea, select{
-      width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; box-sizing:border-box;
-    }
-    textarea{ min-height:100px; resize:vertical; }
-    .radios, .actions{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
-    .radio-label{ background:#f8f8f8; padding:8px 12px; border-radius:8px; border:1px solid #eee; cursor:pointer; }
-    .small{ font-size:13px; color:var(--muted); }
-    .btn{ background:var(--accent); color:#fff; border:none; padding:10px 16px; border-radius:8px; cursor:pointer; font-weight:600; }
-    .btn.secondary{ background:#efefef; color:#111; border:1px solid #ddd; }
-    .row{ display:flex; gap:12px; }
-    .row > *{ flex:1; }
-    .note{ margin-top:12px; font-size:13px; color:var(--muted); }
-    footer{ margin-top:18px; font-size:13px; color:var(--muted); text-align:right; }
-    @media (max-width:600px){ .row{ flex-direction:column; } }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uber 合作零成本營收提案</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container" role="main">
-    <h1>Uber 商家意願調查</h1>
-    <p class="lead">感謝您願意填寫問卷。本問卷用於了解商家是否有意願與 Uber 合作（例如上架至平台、提供外送等）。</p>
 
-    <form id="surveyForm" novalidate>
-      <div class="field">
-        <label for="shopName">商家名稱 <span aria-hidden="true" style="color:#d00">*</span></label>
-        <input id="shopName" name="shopName" type="text" required placeholder="請輸入商家名稱" />
-      </div>
-
-      <div class="row">
-        <div class="field">
-          <label for="contactName">聯絡人 <span style="color:#d00">*</span></label>
-          <input id="contactName" name="contactName" type="text" required placeholder="負責聯絡人姓名" />
-        </div>
-        <div class="field">
-          <label for="contactInfo">電話或 Email</label>
-          <input id="contactInfo" name="contactInfo" type="text" placeholder="例如 09xx-xxx-xxx 或 email@example.com" />
-        </div>
-      </div>
-
-      <div class="field">
-        <label>是否願意成為 Uber 合作商家？ <span style="color:#d00">*</span></label>
-        <div class="radios" role="radiogroup" aria-labelledby="willingLabel">
-          <label class="radio-label"><input type="radio" name="willing" value="願意" required /> 願意</label>
-          <label class="radio-label"><input type="radio" name="willing" value="不願意" /> 不願意</label>
-          <label class="radio-label"><input type="radio" name="willing" value="需要更多資訊" /> 需要更多資訊</label>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="onboardDate">預計上架時間（若已規劃）</label>
-        <input id="onboardDate" name="onboardDate" type="date" />
-      </div>
-
-      <div class="field">
-        <label for="notes">備註 / 額外說明</label>
-        <textarea id="notes" name="notes" placeholder="例如：菜單連結、價格範圍、特殊需求等"></textarea>
-      </div>
-
-      <div class="field">
-        <label><input id="canContact" name="canContact" type="checkbox" /> 我同意 Uber 或代表聯絡我</label>
-      </div>
-
-      <div class="field small">
-        <label for="privacy">隱私說明</label>
-        <div id="privacy" class="note">您提供的資料僅用於本次聯絡與合作評估，不會公開或用於其他商業用途。</div>
-      </div>
-
-      <div class="actions" style="margin-top:12px;">
-        <button type="button" id="downloadBtn" class="btn">下載 JSON</button>
-        <button type="button" id="emailBtn" class="btn secondary">透過 Email 傳送</button>
-        <button type="submit" id="submitBtn" class="btn" style="background:#0a7f4a">直接提交（模擬）</button>
-      </div>
-
-      <div id="msg" class="note" aria-live="polite" style="display:none;"></div>
-    </form>
-
-    <footer>填寫時間會記錄在產生的 JSON 檔中</footer>
+<header class="hero">
+  <div class="container">
+    <h1 class="fade-in">零成本實現雙贏</h1>
+    <p class="fade-in delay-1">Uber 合作方案，為您的場所創造額外營收</p>
+    <a href="#form" class="cta-button fade-in delay-2">立即啟動合作</a>
   </div>
+</header>
 
-  <script>
-    (function(){
-      const form = document.getElementById('surveyForm');
-      const downloadBtn = document.getElementById('downloadBtn');
-      const emailBtn = document.getElementById('emailBtn');
-      const msg = document.getElementById('msg');
+<section class="section">
+  <div class="container two-col">
+    <div>
+      <img src="hero-image.jpg" alt="Uber 合作" class="fade-in-left">
+    </div>
+    <div class="fade-in-right">
+      <h2>這不只是服務升級，<br>這是一套零成本的自動化營收系統。</h2>
+      <p>顧客最後五分鐘的體驗，往往決定了整體印象。</p>
+      <p>現在，您有機會：<strong>零成本</strong>解決交通問題，<strong>每月創造穩定收入</strong>。</p>
+    </div>
+  </div>
+</section>
 
-      function collectData(){
-        const data = {
-          shopName: form.shopName.value.trim(),
-          contactName: form.contactName.value.trim(),
-          contactInfo: form.contactInfo.value.trim(),
-          willing: (form.querySelector('input[name="willing"]:checked') || {}).value || '',
-          onboardDate: form.onboardDate.value || '',
-          notes: form.notes.value.trim(),
-          canContact: !!form.canContact.checked,
-          submittedAt: new Date().toISOString()
-        };
-        return data;
-      }
+<section class="section gray">
+  <div class="container">
+    <h2 class="fade-in">三大營收升級亮點</h2>
+    <div class="card-grid">
+      <div class="card fade-in-up">
+        <h3>🎯 顧客體驗 + 獎金雙贏</h3>
+        <p>推薦 10 位新用戶，當月獲得 <strong>$7,000</strong> 回饋，還讓顧客有體面的搭車服務。</p>
+      </div>
+      <div class="card fade-in-up delay-1">
+        <h3>🤖 全自動無人力</h3>
+        <p>顧客掃碼叫車，系統自動計算獎金，您只需查看手機，確認收益入袋。</p>
+      </div>
+      <div class="card fade-in-up delay-2">
+        <h3>💸 永久零成本</h3>
+        <p>不需花費一毛錢，Uber 提供所有支援與技術，風險為 <strong>0 元</strong>，潛在收益無上限。</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      function validate(){
-        // basic validation for required fields
-        if(!form.shopName.value.trim()){ return "請填寫商家名稱。"; }
-        if(!form.contactName.value.trim()){ return "請填寫聯絡人。"; }
-        if(!form.querySelector('input[name="willing"]:checked')){ return "請選擇是否願意成為 Uber 合作商家。"; }
-        return "";
-      }
+<section class="section" id="form">
+  <div class="container fade-in">
+    <h2>想加入合作？</h2>
+    <p>填寫表單，我們將主動聯繫您！</p>
+    <a href="https://docs.google.com/forms/d/1igxxm0NfxeXoyqAyQwp2Gm2S9NqihxAJ6nr28TvzWzc/edit"
+       target="_blank" class="cta-button">前往表單填寫</a>
+  </div>
+</section>
 
-      function showMsg(text, timeout=4000){
-        msg.style.display='block';
-        msg.textContent=text;
-        setTimeout(()=>{ msg.style.display='none'; }, timeout);
-      }
+<footer>
+  <div class="container">
+    <p>聯絡人：Alex 李柏穎 ｜ TEL：02 – 7755 – 7798 ＃9002 ｜ Email：alex.lee@nextar.com.tw</p>
+    <p>© 2025 NEXTAR x Uber 合作專案</p>
+  </div>
+</footer>
 
-      function triggerDownload(jsonObj, filename){
-        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonObj, null, 2));
-        const a = document.createElement('a');
-        a.setAttribute('href', dataStr);
-        a.setAttribute('download', filename);
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      }
-
-      downloadBtn.addEventListener('click', function(){
-        const err = validate();
-        if(err){ showMsg(err); return; }
-        const data = collectData();
-        const fname = (data.shopName || 'survey') + '-' + (new Date()).toISOString().slice(0,19).replace(/[:T]/g,'-') + '.json';
-        triggerDownload(data, fname);
-        showMsg('已產生並下載 JSON 檔。');
-      });
-
-      emailBtn.addEventListener('click', function(){
-        const err = validate();
-        if(err){ showMsg(err); return; }
-        const data = collectData();
-        const subject = encodeURIComponent('Uber 商家意願調查：' + (data.shopName || ''));
-        const body = encodeURIComponent('以下是商家意願調查內容：%0D%0A%0D%0A' + JSON.stringify(data, null, 2));
-        // mailto 不支持大檔或太長內容，但可作為快速方式
-        window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
-      });
-
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        const err = validate();
-        if(err){ showMsg(err); return; }
-        const data = collectData();
-        // 若未設定後端，這裡僅顯示成功訊息並產生下載
-        triggerDownload(data, (data.shopName || 'survey') + '-submission.json');
-        showMsg('提交完成（已產生 JSON 檔作為紀錄）');
-      });
-    })();
-  </script>
+<script src="script.js"></script>
 </body>
 </html>
